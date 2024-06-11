@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  font-family: 'CustomFont';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background-color: black; */
+  background-image: url("./components/assets/bg.png");
+  /* overflow: hidden; */
+}
+
+button{
+  font-family: 'CustomFont';
+  font-weight: 600;
+}
+
+input{
+  font-family: 'CustomFont';
+  font-weight: 600;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('fonts/Vailery-BLL7l.ttf') format('truetype');
+}

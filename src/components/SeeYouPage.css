@@ -1,0 +1,18 @@
+.see-you-container{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 20vh;
+    left: 0;
+    color: white;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+p{
+    font-size: 10em;
+    font-weight: 1000;
+    margin: 0;
+}

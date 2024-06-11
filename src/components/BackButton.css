@@ -1,0 +1,14 @@
+.back-button {
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    font-size: 32px;
+    font-weight: 1000;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .back-button:hover {
+    transform: scale(1.2);
+  }
