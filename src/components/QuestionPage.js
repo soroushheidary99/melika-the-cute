@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useWindowSize } from 'react-use';
+import Confetti from 'react-confetti';
 import './QuestionPage.css';
 import BackButton from './BackButton';
 
 const QuestionPage = ({confettiCount, setConfettiCount}) => {
   const navigate = useNavigate();
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
+  const [showHoverConfetti, setShowHoverConfetti] = useState(false);
+  const { width, height } = useWindowSize();
 
   const handleYesClick = () => {
     navigate('/thank-you');
@@ -14,7 +18,12 @@ const QuestionPage = ({confettiCount, setConfettiCount}) => {
   };
 
   const handleYesHover = () => {
-    setConfettiCount(confettiCount + 100)
+    setConfettiCount(confettiCount + 100);
+    setShowHoverConfetti(true);
+  };
+
+  const handleYesHoverEnd = () => {
+    setShowHoverConfetti(false);
   };
 
   const handleNoMouseEnter = (event) => {
@@ -40,13 +49,28 @@ const QuestionPage = ({confettiCount, setConfettiCount}) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >   
-      <h5 className="question">want to discuss over our islam advertisement over a cup of coffee?</h5>
-      <h4 className="question-sub" style={{"fontWeight": "100", "marginTop": "-20px", "marginBottom": "50px"}}>Do not try to say no, Try if u don't believe me</h4>
+      {showHoverConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={1000}
+          gravity={2}
+          wind={0}
+          initialVelocityY={10}
+          recycle={true}
+          opacity={0.7}
+          colors={['#ff69b4', '#87ceeb', '#98fb98', '#dda0dd', '#f0e68c', '#ffa07a']}
+        />
+      )}
+      <div className="question-container">
+      <h5 className="question">want to grab a cup of coffee and discuss if god can create a stone so heavy that even he can't lift it?</h5>
+      </div>
       <div className="button-container">
         <motion.button
           className="yes-button"
           onClick={handleYesClick}
           onHoverStart={handleYesHover}
+          onHoverEnd={handleYesHoverEnd}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -59,7 +83,7 @@ const QuestionPage = ({confettiCount, setConfettiCount}) => {
           animate={{ x: noButtonPosition.x, y: noButtonPosition.y }}
           transition={{ type: 'spring', stiffness: 100 }}
         >
-          Ew, NO!
+          NO, get a life!
         </motion.button>
       </div>
     <BackButton />

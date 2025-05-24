@@ -1,0 +1,126 @@
+.mobile-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mobile-warning-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.mobile-warning-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+}
+
+.mobile-warning-title {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.mobile-warning-message {
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.mobile-warning-submessage {
+  color: #777;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.mobile-warning-decoration {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.mobile-warning-decoration span {
+  font-size: 1.5rem;
+  opacity: 0.7;
+  animation: pulse 2s infinite;
+}
+
+.mobile-warning-decoration span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.mobile-warning-decoration span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .mobile-warning-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .mobile-warning-title {
+    font-size: 1.5rem;
+  }
+  
+  .mobile-warning-message {
+    font-size: 1.1rem;
+  }
+  
+  .mobile-warning-icon {
+    font-size: 3rem;
+  }
+} 

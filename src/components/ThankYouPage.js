@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './ThankYouPage.css';
 import BackButton from './BackButton';
 import { useNavigate } from 'react-router-dom';
@@ -9,25 +9,13 @@ import { useNavigate } from 'react-router-dom';
 const ThankYouPage = () => {
   const navigate = useNavigate();
   
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedHour, setSelectedHour] = useState('');
-  const [selectedActivity, setSelectedActivity] = useState('');
+  const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [comments, setComments] = useState('');
-  const [isDateOpen, setIsDateOpen] = useState(false);
-  const [isActivityOpen, setIsActivityOpen] = useState(false);
+  const [isDateTimeOpen, setIsDateTimeOpen] = useState(false);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
-  const [isHourOpen, setIsHourOpen] = useState(false); 
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleHourChange = (event) => {
-    setSelectedHour(event.target.value);
-  };
-
-  const handleActivityChange = (event) => {
-    setSelectedActivity(event.target.value);
+  const handleDateTimeChange = (date) => {
+    setSelectedDateTime(date);
   };
 
   const handleCommentsChange = (event) => {
@@ -36,26 +24,22 @@ const ThankYouPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Perform form submission logic here, send the form to this email: soroush.h.dev@gmail.com
+
     const formData = {
-      date: selectedDate.toLocaleDateString(),
-      hour: selectedHour,
-      activity: selectedActivity,
+      date: selectedDateTime.toLocaleDateString(),
+      time: selectedDateTime.toLocaleTimeString(),
       comments: comments,
     };
   
     const emailBody = `
       Date: ${formData.date}
-      Hour: ${formData.hour}
-      Activity: ${formData.activity}
+      Time: ${formData.time}
       Comments: ${formData.comments}
     `;
     const mailtoURL = `mailto:soroush.h.dev@gmail.com?subject=Date%20Confirmation&body=${encodeURIComponent(emailBody)}`;
     window.location.href = mailtoURL;
-    // Reset form fields
-    setSelectedDate(new Date());
-    setSelectedHour('');
-    setSelectedActivity('');
+
+    setSelectedDateTime(new Date());
     setComments('');
     navigate('./../see-you');
   };
@@ -68,94 +52,43 @@ const ThankYouPage = () => {
       exit={{ opacity: 0 }}
     >
       <h1 className="thank-you-text">Thank You, Please fill out the form</h1>
-      <p className="message">Didn't think you would come this far</p>
+      <p className="message">so my assistant can arrange the limousine</p>
       <form className="date-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <motion.div
             className="form-label custom-font"
-            onClick={() => setIsDateOpen(!isDateOpen)}
+            onClick={() => setIsDateTimeOpen(!isDateTimeOpen)}
             initial={false}
-            animate={{ backgroundColor: isDateOpen ? '#fff' : '#000', color: isDateOpen ? '#000' : '#fff' }}
+            animate={{ backgroundColor: isDateTimeOpen ? '#fff' : '#000', color: isDateTimeOpen ? '#000' : '#fff' }}
           >
-            Select Date
+            Select Date & Time
           </motion.div>
           <AnimatePresence>
-            {isDateOpen && (
+            {isDateTimeOpen && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                className="date-picker-container"
               >
-                <Calendar id="date" value={selectedDate} onChange={handleDateChange} className="custom-font" />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      <div className="form-group">
-          <motion.div
-            className="form-label custom-font"
-            onClick={() => setIsHourOpen(!isHourOpen)}
-            initial={false}
-            animate={{ backgroundColor: isHourOpen ? '#fff' : '#000', color: isHourOpen ? '#000' : '#fff' }}
-          >
-            Select Hour
-          </motion.div>
-          <AnimatePresence>
-            {isHourOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <input
-                  type="time"
-                  id="hour"
-                  value={selectedHour}
-                  onChange={handleHourChange}
-                  required
-                  className="custom-font"
+                <DatePicker
+                  selected={selectedDateTime}
+                  onChange={handleDateTimeChange}
+                  showTimeSelect
+                  timeFormat="HH:mm"
+                  timeIntervals={15}
+                  timeCaption="Time"
+                  dateFormat="MMMM d, yyyy h:mm aa"
+                  className="custom-font date-picker-input"
+                  calendarClassName="custom-calendar"
+                  inline
                 />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-        <div className="form-group">
-          <motion.div
-            className="form-label custom-font"
-            onClick={() => setIsActivityOpen(!isActivityOpen)}
-            initial={false}
-            animate={{ backgroundColor: isActivityOpen ? '#fff' : '#000', color: isActivityOpen ? '#000' : '#fff' }}
-          >
-            Select Activity
-          </motion.div>
-          <AnimatePresence>
-            {isActivityOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <select
-                  id="activity"
-                  value={selectedActivity}
-                  onChange={handleActivityChange}
-                  required
-                  className="custom-font"
-                >
-                  <option value="">Choose an activity</option>
-                  <option value="pizza">Pizza</option>
-                  <option value="coffee">Coffee</option>
-                  <option value="falafel">Falafel</option>
-                  <option value="bandari">Bandari</option>
-                  <option value="walking">Just Walking</option>
-                </select>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        
         <div className="form-group">
           <motion.div
             className="form-label custom-font"
@@ -172,13 +105,14 @@ const ThankYouPage = () => {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                className="textarea-container"
               >
                 <textarea
                   id="comments"
                   value={comments}
                   onChange={handleCommentsChange}
-                  placeholder="YOU NEED TO GET A LIFE BRO!"
-                  className="custom-font"
+                  placeholder="You need to get a life bro"
+                  className="custom-font glassy-textarea"
                 ></textarea>
               </motion.div>
             )}

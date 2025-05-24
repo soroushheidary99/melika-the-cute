@@ -1,4 +1,3 @@
-
 .thank-you-page {
   display: flex;
   flex-direction: column;
@@ -60,6 +59,7 @@ textarea {
   width: 100%;
   padding: 10px;
   font-size: 16px;
+  font-weight: bold;
   border: none;
   border-radius: 4px;
 }
@@ -73,6 +73,7 @@ button[type='submit'] {
   border-radius: 50px;
   backdrop-filter: 500px blur;
   transition: all 100ms linear;
+  width: 200px;
 }
 button[type='submit']:hover{
   scale: 1.1;
@@ -81,4 +82,154 @@ button[type='submit']:hover{
 
 .custom-font {
   font-family: 'CustomFont', sans-serif;
+}
+
+.textarea-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 90%;
+  margin: 0 auto;
+}
+
+.glassy-textarea {
+  width: 100% !important;
+  min-height: 100px;
+  padding: 15px !important;
+  font-size: 16px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #333 !important;
+  resize: vertical;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glassy-textarea:focus {
+  outline: none !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 2px rgba(255, 255, 255, 0.3) !important;
+}
+
+.glassy-textarea::placeholder {
+  color: rgba(51, 51, 51, 0.6) !important;
+  font-style: italic;
+}
+
+.date-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker {
+  font-family: 'CustomFont', sans-serif !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.react-datepicker__header {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+  color: white !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: white !important;
+  font-family: 'CustomFont', sans-serif !important;
+  font-weight: bold !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #333 !important;
+  font-family: 'CustomFont', sans-serif !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 50% !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: #000 !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+.react-datepicker__navigation {
+  background: none !important;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: white !important;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: white !important;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.react-datepicker__time-box {
+  border-bottom-right-radius: 12px !important;
+}
+
+.react-datepicker__time-list-item {
+  font-family: 'CustomFont', sans-serif !important;
+}
+
+.react-datepicker__time-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: #000 !important;
+  color: white !important;
+}
+
+/* Make the datepicker responsive */
+@media (max-width: 768px) {
+  .date-picker-container {
+    padding: 10px;
+  }
+  
+  .react-datepicker {
+    transform: scale(0.9);
+    transform-origin: center;
+  }
 }
